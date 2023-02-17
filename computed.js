@@ -11,12 +11,12 @@ class ComputedRefImpl {
   __getter = null;
   __is_ref__ = true;
   deps = null;
+  _dirty = false;
 
   constructor(getter) {
     this.__getter = getter;
     const job = () => {
       const newV = this.__getter();
-      console.log(this.__getter._fn(), 'show this.__getter()._fn()');
       const oldV = this.__value__;
       this.__value__ = newV;
       console.log({ newV, oldV }, 'in computed job');

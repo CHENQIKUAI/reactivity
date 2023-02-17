@@ -1,21 +1,17 @@
 /*eslint-disable */
 const env = {
   my: './myVue.js',
-  vue: '../../packages/vue/dist/vue.cjs',
-};
+  vue: '../../packages/vue/dist/vue.cjs'
+}
 
-const { watch, reactive, computed, ref } = require(env.my);
+const { watch, reactive, computed, ref } = require(env.my)
 
 {
-  const count = ref(0);
-  const fn = () => count.value + '++';
-  fn._fn = () => count.value;
-  const ss = computed(fn);
-  // watch(ss, (v) => {
-  //   console.log(v, ' show sssssssssssssssss');
-  // });
-  count.value = 10;
-  count.value = 100;
+  const count = ref(0)
+  const fn = () => count.value + '++'
+  const ss = computed(fn)
+  count.value = 10
+  count.value = 100
 }
 
 // {
