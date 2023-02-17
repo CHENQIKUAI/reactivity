@@ -13,7 +13,7 @@ const queueJob = (job) => {
   if (!isFlusing && !isFlushPending) {
     isFlushPending = true;
     Promise.resolve(1).then(() => {
-      console.log('微任务执行');
+      // console.log('微任务执行');
       if (!isFlusing) flushJobs();
     });
   }

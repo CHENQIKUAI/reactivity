@@ -19,16 +19,18 @@ class ComputedRefImpl {
       const newV = this.__getter();
       const oldV = this.__value__;
       this.__value__ = newV;
-      console.log({ newV, oldV }, 'in computed job');
+      // console.log({ newV, oldV }, 'in computed job');
       if (newV !== oldV) triggerRefValue(this, newV, oldV);
     };
 
     const __scheduler = () => {
+      // console.log(getter(), 'after getter dep change, the new Value is ');
       job();
       // queueJob(job)
     };
     const reactiveEffect = new ReactiveEffect(this.__getter, __scheduler);
     const value = reactiveEffect.run();
+    // console.log(value, 'after exec computed, the return value is');
     this.__value__ = value;
   }
 

@@ -10,8 +10,11 @@ const { watch, reactive, computed, ref } = require(env.my)
   const count = ref(0)
   const fn = () => count.value + '++'
   const ss = computed(fn)
+  watch(ss, n => {
+    console.log(n, '+++++++++++++++++++++++')
+  })
   count.value = 10
-  count.value = 100
+  // count.value = 0
 }
 
 // {

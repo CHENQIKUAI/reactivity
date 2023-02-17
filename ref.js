@@ -17,9 +17,11 @@ class RefImpl {
   }
 
   set value(v) {
-    triggerRefValue(this, v, this.__value__);
-    // console.log('trigger');
+    // console.log('before trigger');
+    // console.log('after trigger');
+    const oldValue = this.__value__
     this.__value__ = v;
+    triggerRefValue(this, v, oldValue);
   }
 }
 

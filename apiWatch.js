@@ -21,18 +21,18 @@ const watch = (source, cb) => {
   function job() {
     oldValue = newValue;
     newValue = reactiveEffect.run();
-    console.log({ newValue, oldValue }, 'in job');
+    // console.log({ newValue, oldValue }, 'in job');
     if (newValue !== oldValue) cb(newValue, oldValue);
   }
   job.allowRecurse = true;
   const scheduler = () => {
-    console.log('in scheduler');
+    // console.log('in scheduler');
     queueJob(job);
   };
   const reactiveEffect = new ReactiveEffect(getter, scheduler);
 
   newValue = reactiveEffect.run();
-  console.log(newValue, 'shwo newValue after first run in apiWatch');
+  // console.log(newValue, 'shwo newValue after first run in apiWatch');
 };
 
 function traverse(source) {
