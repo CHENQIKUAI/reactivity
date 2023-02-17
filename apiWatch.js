@@ -22,6 +22,7 @@ const watch = (source, cb) => {
     oldValue = newValue;
     newValue = reactiveEffect.run();
     // console.log({ newValue, oldValue }, 'in job');
+    // 前后值不一样才trigger
     if (newValue !== oldValue) cb(newValue, oldValue);
   }
   job.allowRecurse = true;

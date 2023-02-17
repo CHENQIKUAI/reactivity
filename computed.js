@@ -20,6 +20,7 @@ class ComputedRefImpl {
       const oldV = this.__value__;
       this.__value__ = newV;
       // console.log({ newV, oldV }, 'in computed job');
+      // 前后值不一样才trigger
       if (newV !== oldV) triggerRefValue(this, newV, oldV);
     };
 

@@ -6,6 +6,7 @@ let isFlusing = false;
 let isFlushPending = false;
 
 const queueJob = (job) => {
+  // 不重复推入job
   if (!queue.length || !queue.includes(job, isFlusing && job.allowRecurse ? flushIndex + 1 : flushIndex)) {
     queue.push(job);
   }

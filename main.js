@@ -5,28 +5,36 @@ const env = {
 }
 
 const { watch, reactive, computed, ref } = require(env.my)
-
 {
   const count = ref(0)
-  const fn = () => count.value + '++'
-  const ss = computed(fn)
-  watch(ss, n => {
+  watch(count, n => {
     console.log(n, '+++++++++++++++++++++++')
   })
   count.value = 10
-  // count.value = 0
+  count.value = 0
+  // count.value = 11
 }
 
 // {
-//   const count = reactive({ value: 0 });
-//   const p1 = computed(() => count.value + 1);
-//   const p2 = computed(() => p1.value + 2);
+//   const count = ref(0)
+//   const fn = () => count.value + '++'
+//   const ss = computed(fn)
+//   watch(ss, n => {
+//     console.log(n, '+++++++++++++++++++++++')
+//   })
+//   count.value = 10
+//   count.value = 0
+// }
 
-//   watch(p2, (v) => {
-//     console.log('count change', v);
-//   });
-//   count.value = 10;
-//   // count.value = 0;
+// {
+//   const count = reactive({ value: 0 })
+//   const p1 = computed(() => count.value + 1)
+
+//   watch(p1, v => {
+//     console.log('count change', v)
+//   })
+//   count.value = 10
+//   count.value = 0
 // }
 
 {

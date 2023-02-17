@@ -57,6 +57,7 @@ function reactive(data) {
       const oldValue = data[p];
       data[p] = newValue;
       if (oldValue !== newValue) {
+        // 前后值不一样才trigger
         const dataMap = reactiveMap.get(data);
         if (dataMap) {
           const deps = dataMap.get(p);
