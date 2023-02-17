@@ -17,6 +17,7 @@ class ComputedRefImpl {
     this.__getter = getter;
     const job = () => {
       const newV = this.__getter();
+      // TODO:这里比Vue3多计算了一次
       const oldV = this.__value__;
       this.__value__ = newV;
       // console.log({ newV, oldV }, 'in computed job');
