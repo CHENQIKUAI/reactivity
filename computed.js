@@ -32,7 +32,10 @@ class ComputedRefImpl {
 function trackRefValue(ref) {
   const activeEffect = getActiveEffect();
   // 需要判断去重吗？
-  if (activeEffect) ref.deps = ref.deps ? [...ref.deps, activeEffect] : [activeEffect];
+  // 试试去重？
+  if (activeEffect && !(ref.deps || []).includes(activeEffect)) {
+    ref.deps = ref.deps ? [...ref.deps, activeEffect] : [activeEffect]
+  };
 }
 
 function triggerRefValue(ref, newV, oldV) {

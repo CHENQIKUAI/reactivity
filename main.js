@@ -7,18 +7,16 @@ const env = {
 {
   const { watch, reactive, computed, ref } = require(env.my)
   const womenCount = ref(40)
-  const menCount = ref(40)
-
-  const t1 = new Date()
 
   let i = 0
+  const t1 = new Date()
 
   const bigCalc = computed(() => {
     i++
     console.log('start' + i)
     let count = 0
-    for (let i = 0; i < 10000; ++i) {
-      count += womenCount.value * menCount.value
+    for (let i = 0; i < 100000; ++i) {
+      count += womenCount.value
     }
     console.log('after' + i)
     return count
@@ -26,11 +24,8 @@ const env = {
 
   watch(bigCalc, (n, old) => {
     const t2 = new Date()
+    console.log(t2 - t1)
     console.log(n, old, '+++++++++++++++++++++++')
-    console.log(t2 - t1, ' time count')
-    // setTimeout(() => {
-    //   menCount.value++
-    // }, 100);
   })
   womenCount.value++
 }
