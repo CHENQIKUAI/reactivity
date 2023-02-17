@@ -15,29 +15,16 @@ class ComputedRefImpl {
 
   constructor(getter) {
     this.__getter = getter;
-    const job = () => {
-      const newV = this.__getter();
-      // TODO:这里比Vue3多计算了一次
-      const oldV = this.__value__;
-      this.__value__ = newV;
-      // console.log({ newV, oldV }, 'in computed job');
-      // 前后值不一样才trigger
-      if (newV !== oldV) triggerRefValue(this, newV, oldV);
-    };
-
-    const __scheduler = () => {
-      // console.log(getter(), 'after getter dep change, the new Value is ');
-      job();
-      // queueJob(job)
-    };
-    const reactiveEffect = new ReactiveEffect(this.__getter, __scheduler);
-    const value = reactiveEffect.run();
-    // console.log(value, 'after exec computed, the return value is');
-    this.__value__ = value;
+    this.reactiveEffect = new ReactiveEffect(this.__getter, () => {
+      console.log('in computed scheduler');
+      triggerRefValue(this)
+    });
   }
 
   get value() {
     trackRefValue(this);
+    const value = this.reactiveEffect.run();
+    this.__value__ = value;
     return this.__value__;
   }
 }
