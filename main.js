@@ -5,29 +5,27 @@ const env = {
 }
 
 {
-  const { watch, reactive, computed, ref } = require(env.my)
-  const womenCount = ref(40)
+  let { watch, reactive, computed, ref, s } = require(env.my)
+  console.log(s)
 
-  let i = 0
-  const t1 = new Date()
+  s = 3
+  console.log(s)
 
-  const bigCalc = computed(() => {
-    i++
-    console.log('start' + i)
-    let count = 0
-    for (let i = 0; i < 100000; ++i) {
-      count += womenCount.value
-    }
-    console.log('after' + i)
-    return count
-  })
+  // const womenCount = ref(40)
 
-  watch(bigCalc, (n, old) => {
-    const t2 = new Date()
-    console.log(t2 - t1)
-    console.log(n, old, '+++++++++++++++++++++++')
-  })
-  womenCount.value++
+  // const bigCalc = computed(() => {
+  //   let count = 0
+  //   for (let i = 0; i < 100000; ++i) {
+  //     count += womenCount.value
+  //   }
+  //   return count
+  // })
+
+  // watch(bigCalc, (n, old) => {
+  //   womenCount.value++
+  //   console.log(n, old, '+++++++++++++++++++++++')
+  // })
+  // womenCount.value++
 }
 
 // {
