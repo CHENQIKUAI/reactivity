@@ -4,24 +4,59 @@ const env = {
   vue: '../../packages/vue/dist/vue.cjs'
 }
 
-const { watch, reactive, computed, ref } = require(env.vue)
 {
+  const { watch, reactive, computed, ref } = require(env.vue)
   const womenCount = ref(40)
   const menCount = ref(40)
 
+  const t1 = new Date()
+
   watch(
-    computed(() => womenCount.value + menCount.value),
+    computed(() => {
+      let count = 0
+      for (let i = 0; i < 10000; ++i) {
+        count += womenCount.value * menCount.value
+      }
+      return count
+    }),
     (n, old) => {
+      const t2 = new Date()
       console.log(n, old, '+++++++++++++++++++++++')
+      console.log(t2 - t1, 'vue time count')
       // setTimeout(() => {
       //   menCount.value++
       // }, 100);
     }
   )
   womenCount.value++
-
-  // count.value = 11
 }
+
+// {
+//   const { watch, reactive, computed, ref } = require(env.my)
+//   const womenCount = ref(40)
+//   const menCount = ref(40)
+
+//   const t1 = new Date()
+
+//   watch(
+//     computed(() => {
+//       let count = 0
+//       for (let i = 0; i < 10000; ++i) {
+//         count += womenCount.value * menCount.value
+//       }
+//       return count
+//     }),
+//     (n, old) => {
+//       const t2 = new Date()
+//       console.log(n, old, '+++++++++++++++++++++++')
+//       console.log(t2 - t1, 'my time count')
+//       // setTimeout(() => {
+//       //   menCount.value++
+//       // }, 100);
+//     }
+//   )
+//   womenCount.value++
+// }
 
 // {
 //   const count = ref(0)
