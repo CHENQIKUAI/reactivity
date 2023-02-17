@@ -33,8 +33,8 @@ function trackRefValue(ref) {
   const activeEffect = getActiveEffect();
   // 需要判断去重吗？
   // 试试去重？
-  if (activeEffect && !(ref.deps || []).includes(activeEffect)) {
-    ref.deps = ref.deps ? [...ref.deps, activeEffect] : [activeEffect]
+  if (activeEffect) {
+    ref.deps = ref.deps ? new Set([...ref.deps, activeEffect]) : new Set([activeEffect])
   };
 }
 
