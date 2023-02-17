@@ -4,14 +4,22 @@ const env = {
   vue: '../../packages/vue/dist/vue.cjs'
 }
 
-const { watch, reactive, computed, ref } = require(env.my)
+const { watch, reactive, computed, ref } = require(env.vue)
 {
-  const count = ref(0)
-  watch(count, n => {
-    console.log(n, '+++++++++++++++++++++++')
-  })
-  count.value = 10
-  count.value = 0
+  const womenCount = ref(40)
+  const menCount = ref(40)
+
+  watch(
+    computed(() => womenCount.value + menCount.value),
+    (n, old) => {
+      console.log(n, old, '+++++++++++++++++++++++')
+      // setTimeout(() => {
+      //   menCount.value++
+      // }, 100);
+    }
+  )
+  womenCount.value++
+
   // count.value = 11
 }
 
