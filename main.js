@@ -5,27 +5,17 @@ const env = {
 }
 
 {
-  let { watch, reactive, computed, ref, s } = require(env.my)
-  console.log(s)
+  let { watch, reactive, computed, ref } = require(env.vue)
+  const count = ref(1)
 
-  s = 3
-  console.log(s)
+  const res = computed(() => {
+    return count.value * 100 + 1
+  })
 
-  // const womenCount = ref(40)
-
-  // const bigCalc = computed(() => {
-  //   let count = 0
-  //   for (let i = 0; i < 100000; ++i) {
-  //     count += womenCount.value
-  //   }
-  //   return count
-  // })
-
-  // watch(bigCalc, (n, old) => {
-  //   womenCount.value++
-  //   console.log(n, old, '+++++++++++++++++++++++')
-  // })
-  // womenCount.value++
+  watch(res, newV => {
+    console.log(newV, 'shwo new v')
+  })
+  // count.value = 3
 }
 
 // {

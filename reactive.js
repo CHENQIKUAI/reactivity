@@ -16,8 +16,10 @@ class ReactiveEffect {
   run() {
     try {
       activeEffect = this
+      console.log(!!activeEffect, 'before');
       return this.fn()
     } finally {
+      console.log(!!activeEffect, 'after');
       activeEffect = null
     }
   }
